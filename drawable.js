@@ -3,7 +3,7 @@ const draw = {
     draw(obj){
         this.clear()
         obj.forEach(x => {
-            this.arc(x.loc, x.size)
+            x.draw()
         })
     },
 
@@ -20,7 +20,12 @@ const draw = {
         ctx.stroke()
     },
 
+    rect(loc, size, color){
+        ctx.fillStyle = color
+        ctx.fillRect(loc.x, loc.y, size, size)
+    },
+
     clear() {
-        ctx.clearRect(0, 0, canvas.attr('width'), canvas.attr('height'));
+        ctx.clearRect(0, 0, cvs_size.x, cvs_size.y);
     }
 }

@@ -15,21 +15,22 @@ const load_fnc = {
 
     canvas_screen(){
         canvas.attr('width', document.body.clientWidth) //document.width is obsolete
-        canvas.attr('height',  940) //document.height is obsolete
+        canvas.attr('height',  850) //document.height is obsolete
 
         cvs_size.x = document.body.clientWidth
-        cvs_size.y = 940
+        cvs_size.y = 850
     }
 }
 
-const run = {
-    
-}
+function random(min, max) {
+    var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
+    return ranNum;
+  }
 
 $(document).ready(function(){
     Object.values(load_fnc).forEach(x => {x()})
     Object.keys(canvas_event).forEach(x => {
-        canvas.bind(x, canvas_event[x])
+        canvas.bind(x, function(e){canvas_event[x](e)})
     })
     setInterval(function(){obj.run()}, frame)
 })
