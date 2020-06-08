@@ -4,7 +4,7 @@ var ctx = null
 
 var cvs_size = { x: 0, y : 0}
 
-const frame = 10
+const frame = 1000/60
 
 const load_fnc = {
 

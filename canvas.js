@@ -4,12 +4,26 @@ var move = {x:0, y:0}
 const canvas_event = 
 { 
     c : false,
+    s_obj : null,
 
     load : () => {
         
     },
 
+    mousedown : (e) => {
+        let loc = {x : e.offsetX, y : e.offsetY}
+        this.s_obj = obj_controller.select_obj(loc)
+        if(this.s_obj != undefined){ 
+            this.c = true 
+            this.s_obj.ignore = true
+        }
+    },
+
     mousemove : (e) => {
+        if(this.c){
+            s_obj.loc = {x : e.offsetX, y : e.offsetY}
+            return
+        }
         move = {
             x : e.originalEvent.movementX,
             y : e.originalEvent.movementY
@@ -17,9 +31,13 @@ const canvas_event =
     },
 
     mouseup : (e) => {
+        if(this.c){ 
+            this.c = false;
+            this.s_obj.ignore = false
+            return;
+        }
         let loc = {x : e.offsetX, y : e.offsetY}
         obj.Arc(loc, 20, move)
-        console.log(move)
     }
 }
 
